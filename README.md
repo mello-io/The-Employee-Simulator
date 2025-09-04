@@ -46,6 +46,7 @@ User-Simulation-Framework/
 │   ├── browsing.py        # Advanced browser features (multi-tabs, surfing)
 │   ├── system_actions.py  # System-level actions (volume, settings)
 │   └── __init__.py
+└── .gitignore             # Avoid clutter like cache files, logs, and system-specific junk.
 
 ```
 
