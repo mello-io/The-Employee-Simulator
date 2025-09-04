@@ -4,6 +4,8 @@
 psutil         # For process management (open/close apps)
 pyautogui      # For simulating user interactions (mouse, keyboard, scrolling)
 selenium       # For advanced browser automation (multi-tab browsing, surfing)
+pyfiglet       # For the banner
 
 # Logging uses Python's built-in logging, so no extra package needed
+
 # Random, time, subprocess are also built-in Python modules
