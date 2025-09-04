@@ -29,9 +29,13 @@ This project helps researchers create repeatable, controllable, and realistic us
 User-Simulation-Framework/
 │
 ├── main.py                # Entry point for simulation
-├── apps.txt               # List of app executable paths
-├── websites.txt           # List of websites for browsing
+|
+├── data/                  # Data folder (containing the simulation worksflow lists)
+│   ├── apps.txt           # List of app executable paths
+│   └── websites.txt           # List of websites for browsing
+|
 ├── requirements.txt       # Python dependencies for User Simulation Framework
+|
 ├── logs/                  # Logs folder (auto-created per run)
 │   └── log-<date>.txt
 │
