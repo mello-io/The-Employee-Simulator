@@ -1,0 +1,7 @@
+notepad.exe
+calc.exe
+mspaint.exe
+ncpa.cpl
+C:\Program Files (x86)\VideoLAN\VLC\vlc.exe
+C:\Users\DCADM\AppData\Local\Programs\Microsoft VS Code\Code.exe
+C:\Program Files\Wireshark\Wireshark.exe
