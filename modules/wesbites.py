@@ -1,4 +1,5 @@
 # modules/websites.py
+
 import os
 import random
 import tempfile
@@ -9,18 +10,16 @@ from logger import log
 from . import process_utils as pu
 
 CANDIDATE_BROWSERS = [
-    r"C:\Program Files\Google\Chrome\Application\chrome.exe",
-    r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
-    r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
-    r"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
-    r"C:\Program Files\Mozilla Firefox\firefox.exe",
-    r"C:\Program Files (x86)\Mozilla Firefox\firefox.exe",
-]
+        r"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
+        r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+   ]
 
 def _find_browser():
     for p in CANDIDATE_BROWSERS:
         if os.path.exists(p):
+            log(f"[WEB][DEBUG] Found browser via path: {p}")
             return p
+    log("[WEB][ERROR] No browser found in PATH or fallback locations.")
     return None
 
 def load_websites(file_path="data/websites.txt"):
@@ -38,15 +37,17 @@ def simulate_website_usage(websites_list):
     profile_dir = tempfile.mkdtemp(prefix="sim_browser_profile_")
 
     log(f"[WEB] Opening: {url} (for {duration//60}m {duration%60}s) via {os.path.basename(browser)}")
+    
     args = [
         "--new-window",
-        f"--user-data-dir={profile_dir}",
+        #f"--user-data-dir={profile_dir}",
         "--no-first-run",
         "--no-default-browser-check",
         url,
-    ]
-
+    ]  
+   
     try:
+        log(f"[WEB][DEBUG] Launching: {browser} {' '.join(args)}")
         proc = pu.launch_process(browser, args=args, new_console=False)
     except Exception as e:
         log(f"[WEB][ERROR] Launch failed: {e}")
@@ -57,7 +58,8 @@ def simulate_website_usage(websites_list):
 
     # Close browser tree and remove temp profile
     try:
-        pu.terminate_tree(proc.pid, timeout=5.0, force=True)
+        #pu.terminate_tree(proc.pid, timeout=5.0, force=True)
+        pu.terminate_process_by_name("msedge.exe")
         log("[WEB] Closed browser session")
     finally:
         shutil.rmtree(profile_dir, ignore_errors=True)
