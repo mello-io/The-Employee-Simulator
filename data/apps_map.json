@@ -1,0 +1,22 @@
+{
+  "chrome": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+  "firefox": "C:\\Program Files\\Mozilla Firefox\\firefox.exe",
+  "msedge": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+  "notepadplusplus": "C:\\Program Files\\Notepad++\\notepad++.exe",
+  "sublimetext3": "C:\\Program Files\\Sublime Text 3\\sublime_text.exe",
+  "vscode": "C:\\Program Files\\Microsoft VS Code\\Code.exe",
+  "7zip": "C:\\Program Files\\7-Zip\\7zFM.exe",
+  "winrar": "C:\\Program Files\\WinRAR\\WinRAR.exe",
+  "sumatrapdf": "C:\\Program Files\\SumatraPDF\\SumatraPDF.exe",
+  "vlc": "C:\\Program Files\\VideoLAN\\VLC\\vlc.exe",
+  "filezilla": "C:\\Program Files\\FileZilla FTP Client\\filezilla.exe",
+  "putty": "C:\\Program Files\\PuTTY\\putty.exe",
+  "git": "C:\\Program Files\\Git\\git-bash.exe",
+  "postman": "C:\\Users\\%USERNAME%\\AppData\\Local\\Postman\\Postman.exe",
+  "zoom": "C:\\Users\\%USERNAME%\\AppData\\Roaming\\Zoom\\bin\\Zoom.exe",
+  "slack": "C:\\Users\\%USERNAME%\\AppData\\Local\\slack\\slack.exe",
+  "greenshot": "C:\\Program Files\\Greenshot\\Greenshot.exe",
+  "everything": "C:\\Program Files\\Everything\\Everything.exe",
+  "nmap": "C:\\Program Files (x86)\\Nmap\\nmap.exe",
+  "wireshark": "C:\\Program Files\\Wireshark\\Wireshark.exe"
+}
