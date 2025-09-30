@@ -1,4 +1,5 @@
 # modules/browsing.py
+
 import os
 import random
 import tempfile
@@ -22,17 +23,21 @@ def simulate_multi_tab_browsing(websites_list):
 
     log(f"[BROWSING] Opening {num_tabs} tabs for {duration//60}m {duration%60}s via {os.path.basename(browser)}")
     for u in urls:
-        log(f"[BROWSING]  - {u}")
+       log(f"[BROWSING]  - {u}")
 
     args = [
         "--new-window",
-        f"--user-data-dir={profile_dir}",
+        #f"--user-data-dir={profile_dir}",
         "--no-first-run",
         "--no-default-browser-check",
     ] + urls
 
+
     try:
+        log(f"[BROWSING][DEBUG] Launching: {browser} {' '.join(args)}")
         proc = pu.launch_process(browser, args=args, new_console=False)
+        #proc = subprocess.Popen(f'"{browser}" {" ".join(args)}', shell=True)
+
     except Exception as e:
         log(f"[BROWSING][ERROR] Launch failed: {e}")
         shutil.rmtree(profile_dir, ignore_errors=True)
@@ -41,7 +46,8 @@ def simulate_multi_tab_browsing(websites_list):
     time.sleep(duration)
 
     try:
-        pu.terminate_tree(proc.pid, timeout=5.0, force=True)
+        #pu.terminate_tree(proc.pid, timeout=5.0, force=True)
+        pu.terminate_process_by_name("msedge.exe")
         log("[BROWSING] Closed multi-tab session")
     finally:
         shutil.rmtree(profile_dir, ignore_errors=True)
