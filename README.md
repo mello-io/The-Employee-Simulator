@@ -4,6 +4,8 @@ A modular Python framework to simulate normal employee behavior on Windows endpo
 
 This project helps researchers create repeatable, controllable, and realistic user activity patterns (apps, websites, breaks, browsing, system actions) for evaluating endpoint security solutions such as Palo Alto Cortex.
 
+`Current Version: v1.2 `
+
 ---
 
 ## 📌 Features
@@ -11,15 +13,17 @@ This project helps researchers create repeatable, controllable, and realistic us
 - 🎲 Randomized App Usage\
   Opens and closes applications from a defined list at random intervals (1–4 min).
 - 🌐 Website Browsing Simulation\
-  Visits websites (work & personal) in a browser with realistic durations.
+  Visits websites in a browser with realistic durations.
 - ☕ Idle Breaks\
   Simulates user micro/lunch breaks (up to 10 min).
 - 📑 Detailed Logging\
-  Every action is logged in ` logs/<log-<date>.txt ` with timestamps and durations.
+  Every action is logged in the console as well as in a file at ` logs/<log-<date>.txt ` with timestamps and durations.
 - 🛠️ Modular Design\
   Extend functionality easily by adding new modules (e.g., system interactions, file usage).
 - ⏳ Continuous Simulation\
   Runs until stopped, logging termination events (` Ctrl+C `).
+- 🍫 Chocolatey Package Manager Integration
+  Chocolatey is able to install baseline applications required by the script if not present in the endpoint.
 
 ---
 
@@ -28,11 +32,12 @@ This project helps researchers create repeatable, controllable, and realistic us
 ```
 User-Simulation-Framework/
 │
-├── main.py                # Entry point for simulation
+├── main.py                # Main file for simulation
 |
 ├── data/                  # Data folder (containing the simulation worksflow lists)
-│   ├── apps.txt           # List of app executable paths
-│   └── websites.txt           # List of websites for browsing
+│   ├── apps_map.json      # List of app executable paths in the system
+│   ├── apps.txt           # List of app to be used in the script
+│   └── websites.txt       # List of websites for browsing
 |
 ├── requirements.txt       # Python dependencies for User Simulation Framework
 |
@@ -45,7 +50,10 @@ User-Simulation-Framework/
 │   ├── breaks.py          # Idle/lunch break simulation
 │   ├── browsing.py        # Advanced browser features (multi-tabs, surfing)
 │   ├── system_actions.py  # System-level actions (volume, settings)
+│   ├── startup_check.py   # Endpoint baseline setup , check for presence of chocolatey and the default apps
+│   ├── process_utils.py  # System-level actions (volume, settings)
 │   └── __init__.py
+|
 └── .gitignore             # Avoid clutter like cache files, logs, and system-specific junk.
 
 ```
@@ -56,26 +64,29 @@ User-Simulation-Framework/
 
 ## ✅ Phase 1 (Completed)
 
-- Random app usage (open/close with duration).
-- Website browsing (open/close with duration).
-- Idle breaks (up to 10 minutes).
-- Logging (log-<date>.txt) with timestamps & durations.
-- Modular architecture.
-- Fixed app/browser closing via PID tracking.
-- Continuous execution until stopped.
-
-⚠️ : Comprehensive Phase 1 documentation to be released soon.
+- 🎲 Random app usage (open/close with duration).
+- 🌐 Website browsing (open/close with duration).
+- ☕ Idle breaks (up to 10 minutes).
+- 📝 Logging (log-<date>.txt) with timestamps & durations.
+- ⚒️ Modular architecture.
+- 🔏 Fixed app/browser closing via PID tracking.
+- ⌛ Continuous execution until stopped.
 
 
-
-## 🚀 Phase 2 (Planned)
+## ✅ Phase 2 (Completed)
 
 - 🖱️ System Interactions: adjust volume, brightness, open/close settings panels.
 - 🌐 Advanced Browsing: multi-tab browsing, random surfing (e.g., YouTube, TryHackMe, Spotify, VirusTotal, home decor sites).
+- ⚡ Error Handling Hooks: resilient execution (no crash on one module failure).
+- 🍫 Chocolatey Package Manager: installing baseline application in endpoints to run a baseline.
+- 📝 Verbose Logging: logs contain actions from SYSTEM, Modules, DEBUG for clear understanding and script maintainance.
+
+
+## 🚀 Phase 3 (Planned)
 - 📂 File Interactions: open/edit/close documents, PDFs, spreadsheets.
 - 🎵 Media Player Simulation: play/pause music or video apps.
 - 📊 Analytics/Export: structured JSON/CSV logs for timeline analysis.
-- ⚡ Error Handling Hooks: resilient execution (no crash on one module failure).
+
 
 ---
 
@@ -91,11 +102,12 @@ cd user-simulation-framework
 pip install -r requirements.txt
 ```
 3. Edit ` apps.txt ` and ` websites.txt ` with your environment.
-4. Run the simulation:
+4. Add initial app execution path in ` apps_map.json ` for proper execution apps in ` apps.txt `.
+5. Run the simulation:
 ```
 python main.py
 ```
-5. Logs will be saved to logs/log-<date>.txt.
+5. Logs will be saved to ` logs/log-<date>.txt `.
 
 ---
 
