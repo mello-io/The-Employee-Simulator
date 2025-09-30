@@ -6,6 +6,7 @@ import shutil
 import subprocess
 import time
 from typing import List, Optional
+from logger import log
 
 import psutil
 
@@ -70,6 +71,16 @@ def terminate_tree(pid: int, timeout: float = 5.0, force: bool = True) -> None:
             subprocess.run(["taskkill", "/PID", str(pid), "/T", "/F"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=3)
         except Exception:
             pass
+
+def terminate_process_by_name(name="msedge.exe"):
+    """Kill all processes matching the executable name."""
+    for proc in psutil.process_iter(['pid', 'name']):
+        if proc.info['name'] and proc.info['name'].lower() == name.lower():
+            try:
+                proc.terminate()
+                log(f"[SYSTEM] Terminated {name} (PID {proc.info['pid']})")
+            except Exception as e:
+                log(f"[SYSTEM][ERROR] Failed to terminate {name} PID {proc.info['pid']}: {e}")
 
 def kill_by_image_name(image_name: str) -> None:
     """Best-effort: kill all processes whose .name() matches image_name (case-insensitive)."""
